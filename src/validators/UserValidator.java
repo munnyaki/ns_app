@@ -33,12 +33,12 @@ public class UserValidator {
             return "名前を入力してください。";
         }
         if(name_duplicate_check_flag) {
-            EntityManager us = DBUtil.createEntityManager();
-            long users_count = (long)us.createNamedQuery("checkRegisteredCode", Long.class)
+            EntityManager em = DBUtil.createEntityManager();
+            long users_count = (long)em.createNamedQuery("checkRegisteredCode", Long.class)
                     .setParameter("name", name)
                     .getSingleResult();
-            us.close();
-            if(users.count > 0) {
+            em.close();
+            if(users_count > 0) {
                 return "すでに使用されている名前です。";
 
             }
