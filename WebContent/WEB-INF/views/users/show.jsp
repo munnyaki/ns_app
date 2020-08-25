@@ -17,7 +17,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title">introduction</h5>
+                                        <h5 class="modal-title">user's introduction</h5>
                                         <button class="btn btn-info" data-dismiss="modal">&times;︎</button>
                                     </div>
                                     <div class="modal-body">
