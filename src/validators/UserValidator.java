@@ -34,7 +34,7 @@ public class UserValidator {
         }
         if(name_duplicate_check_flag) {
             EntityManager em = DBUtil.createEntityManager();
-            long users_count = (long)em.createNamedQuery("checkRegisteredCode", Long.class)
+            long users_count = (long)em.createNamedQuery("checkRegisteredName", Long.class)
                     .setParameter("name", name)
                     .getSingleResult();
             em.close();
