@@ -39,7 +39,7 @@
 
             </c:when>
             <c:otherwise>
-                <h2>お探しのユーザーは見つかりませんでした。</h2>
+                <h2 class="mt-5">お探しのユーザーは見つかりませんでした。</h2>
             </c:otherwise>
         </c:choose>
     </c:param>

@@ -12,7 +12,7 @@
 <div class="container mt-5 ">
 <div class="card text-center border-info">
 <div class="card-header border-info">
-    create user form
+    create or update user form
 </div>
 <div class="card-body">
 <div class="form-group">
