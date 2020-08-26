@@ -4,7 +4,7 @@
     <c:param name="content">
         <c:choose>
         <c:when test="${user != null}">
-            <h1>(パスワードは変更する場合のみ入力してください)</h1>
+            <p class="mt-5">(パスワードは変更する場合のみ入力してください)</p>
             <form method="POST" action="<c:url value='/users/update' />">
                 <c:import url="_form.jsp" />
             </form>
