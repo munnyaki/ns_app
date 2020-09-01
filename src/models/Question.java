@@ -1,5 +1,4 @@
 package models;
-
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -7,41 +6,39 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-@Table(name = "users")
+@Table(name = "questions")
 @NamedQueries({
     @NamedQuery(
-            name = "checkRegisteredName",
-            query = "SELECT COUNT(u) FROM User AS u WHERE u.name = :name"
+            name = "getAllQuestions",
+            query = "SELECT q FROM Question AS q ORDER BY q.id DESC"
             ),
     @NamedQuery(
-            name = "checkLoginNameAndPassword",
-            query = "SELECT u FROM User AS u WHERE u.name = :name AND u.password = :pass"
+            name = "getQuestionsCount",
+            query = "SELECT COUNT(q) FROM Question AS q"
             )
 })
 
-
-
 @Entity
-public class User {
+public class Question {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
-    @Column(name = "age")
-    private Integer age;
+    @Column(name = "question_title", nullable = false)
+    private String question_title;
 
-    @Column(name = "password", length = 64, nullable = false)
-    private String password;
-
-    @Column(name = "introduction")
-    private String introduction;
+    @Column(name = "question_content", nullable = false)
+    private String question_content;
 
     @Column(name = "created_at", nullable = false)
     private Timestamp created_at;
@@ -57,36 +54,28 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public User getUser() {
+        return user;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Integer getAge() {
-        return age;
+    public String getQuestion_title() {
+        return question_title;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setQuestion_title(String question_title) {
+        this.question_title = question_title;
     }
 
-    public String getPassword() {
-        return password;
+    public String getQuestion_content() {
+        return question_content;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getIntroduction() {
-        return introduction;
-    }
-
-    public void setIntroduction(String introduction) {
-        this.introduction = introduction;
+    public void setQuestion_content(String question_content) {
+        this.question_content = question_content;
     }
 
     public Timestamp getCreated_at() {
@@ -104,6 +93,8 @@ public class User {
     public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
     }
+
+
 
 
 }
