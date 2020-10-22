@@ -40,7 +40,9 @@ public class UsersEditServlet extends HttpServlet {
 
         request.setAttribute("user", u);
         request.setAttribute("_token", request.getSession().getId());
+        if (u != null){
         request.getSession().setAttribute("user_id", u.getId());
+        }
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/edit.jsp");
         rd.forward(request, response);
 

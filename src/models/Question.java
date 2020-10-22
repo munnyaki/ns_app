@@ -20,6 +20,10 @@ import javax.persistence.Table;
     @NamedQuery(
             name = "getQuestionsCount",
             query = "SELECT COUNT(q) FROM Question AS q"
+            ),
+    @NamedQuery(
+            name = "getSomeQuestions",
+            query = "SELECT q FROM Question AS q WHERE q.user = :user ORDER BY q.id DESC"
             )
 })
 

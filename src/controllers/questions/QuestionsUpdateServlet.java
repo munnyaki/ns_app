@@ -58,9 +58,11 @@ public class QuestionsUpdateServlet extends HttpServlet {
             em.getTransaction().begin();
             em.getTransaction().commit();
             em.close();
+            request.getSession().setAttribute("flush", "succeed in updating your issue");
+            request.getSession().setAttribute("flush2", "あなたの課題を更新しました");
+            response.sendRedirect(request.getContextPath() + "/questions/show?id=" + q.getId());
             request.getSession().removeAttribute("question_id");
 
-            response.sendRedirect(request.getContextPath() + "/questions/index");
         }
 
 

@@ -58,7 +58,13 @@ public class QuestionsShowServlet extends HttpServlet {
         request.setAttribute("answers", answers);
         request.setAttribute("answers_count", answers_count);
         request.setAttribute("page", page);
-        request.getSession().setAttribute("now_question", q);
+        request.setAttribute("nowquestion", q);
+        if(request.getSession().getAttribute("flush") != null){
+            request.setAttribute("flush", request.getSession().getAttribute("flush"));
+            request.getSession().removeAttribute("flush");
+            request.setAttribute("flush2", request.getSession().getAttribute("flush2"));
+            request.getSession().removeAttribute("flush2");
+        }
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/questions/show.jsp");
         rd.forward(request, response);
 

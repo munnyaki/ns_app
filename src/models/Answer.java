@@ -22,8 +22,11 @@ import javax.persistence.Table;
     @NamedQuery(
             name = "getSomeAnswersCount",
             query = "SELECT COUNT(a) FROM Answer AS a WHERE a.question = :question"
-
-            )
+            ),
+    @NamedQuery(
+            name = "getSomeAnswers2",
+            query = "SELECT a FROM Answer AS a WHERE a.user = :user ORDER BY a.id DESC"
+            ),
 })
 @Entity
 public class Answer {

@@ -41,7 +41,9 @@ public class QuestionsEditServlet extends HttpServlet {
 
         request.setAttribute("question", q);
         request.setAttribute("_token",request.getSession().getId());
+        if(q != null){
         request.getSession().setAttribute("question_id", q.getId());
+        }
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/questions/edit.jsp");
         rd.forward(request, response);
 

@@ -41,16 +41,15 @@ public class QuestionsCreateServlet extends HttpServlet {
                 EntityManager em = DBUtil.createEntityManager();
 
                 Question q = new Question();
+                q.setQuestion_title(request.getParameter("question_title"));
+                q.setQuestion_content(request.getParameter("question_content"));
 
-                 q.setQuestion_title(request.getParameter("question_title"));
-
-                 q.setQuestion_content(request.getParameter("question_content"));
-
-                 Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+                Timestamp currentTime = new Timestamp(System.currentTimeMillis());
                  q.setCreated_at(currentTime);
                  q.setUpdated_at(currentTime);
 
                  q.setUser((User)request.getSession().getAttribute("login_user"));
+
 
                  List<String> errors = QuestionValidator.validate(q);
                  if(errors.size() > 0){
@@ -67,12 +66,10 @@ public class QuestionsCreateServlet extends HttpServlet {
                      em.getTransaction().begin();
                      em.persist(q);
                      em.getTransaction().commit();
-                     em.close();
-                     request.getSession().setAttribute("flush", "登録が完了しました");
-
-                     response.sendRedirect(request.getContextPath() + "/questions/new");
+                     request.getSession().setAttribute("flush", "succeed in creating your issue");
+                     request.getSession().setAttribute("flush2", "あなたの課題を作成しました");
+                     response.sendRedirect(request.getContextPath() + "/questions/show?id=" + q.getId() );
                  }
-
             }
     }
 

@@ -39,6 +39,8 @@ public class LoginServlet extends HttpServlet {
         if(request.getSession().getAttribute("flush") != null) {
             request.setAttribute("flush", request.getSession().getAttribute("flush"));
             request.getSession().removeAttribute("flush");
+            request.setAttribute("flush2", request.getSession().getAttribute("flush2"));
+            request.getSession().removeAttribute("flush2");
         }
 
         RequestDispatcher rd  = request.getRequestDispatcher("/WEB-INF/views/login/login.jsp");
@@ -87,7 +89,8 @@ public class LoginServlet extends HttpServlet {
         } else {
             request.getSession().setAttribute("login_user", u);
             request.getSession().setAttribute("flush", "succeed in logging in");
-            response.sendRedirect(request.getContextPath() + "/users/new");
+            request.getSession().setAttribute("flush2", "ログインしました");
+            response.sendRedirect(request.getContextPath() + "/questions/index");
         }
     }
 }

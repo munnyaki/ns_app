@@ -34,10 +34,10 @@ public class AnswersEditServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
+
         Answer a = em.find(Answer.class, Integer.parseInt(request.getParameter("id")));
 
         em.close();
-
         request.setAttribute("_token", request.getSession().getId());
         request.setAttribute("answer", a);
         request.getSession().setAttribute("answer_id", a.getId());

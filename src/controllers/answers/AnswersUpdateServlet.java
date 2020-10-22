@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.Answer;
+import models.Question;
 import utils.DBUtil;
 import validators.AnswerValidator;
 
@@ -40,7 +41,7 @@ public class AnswersUpdateServlet extends HttpServlet {
             EntityManager em = DBUtil.createEntityManager();
 
             Answer a = em.find(Answer.class, (Integer)(request.getSession().getAttribute("answer_id")));
-
+            Question q = em.find(Question.class, Integer.parseInt(request.getParameter("id")));
             a.setAnswer_content(request.getParameter("answer_content"));
             a.setUpdated_at(new Timestamp(System.currentTimeMillis()));
 
@@ -59,10 +60,10 @@ public class AnswersUpdateServlet extends HttpServlet {
                 em.getTransaction().commit();
                 em.close();
                 request.getSession().removeAttribute("answer_id");
-
-                response.sendRedirect(request.getContextPath() + "/answers/new");
+                request.getSession().setAttribute("flush", "succeed in updating your advice");
+                request.getSession().setAttribute("flush2", "あなたの提案を更新しました");
+                response.sendRedirect(request.getContextPath() + "/questions/show?id=" + q.getId() );
             }
         }
     }
 }
-

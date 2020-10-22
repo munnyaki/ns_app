@@ -54,7 +54,12 @@ public class QuestionsIndexServlet extends HttpServlet {
         request.setAttribute("questions", questions);
         request.setAttribute("questions_count", questions_count);
         request.setAttribute("page", page);
-
+        if(request.getSession().getAttribute("flush") != null){
+            request.setAttribute("flush", request.getSession().getAttribute("flush"));
+            request.getSession().removeAttribute("flush");
+            request.setAttribute("flush2", request.getSession().getAttribute("flush2"));
+            request.getSession().removeAttribute("flush2");
+        }
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/questions/index.jsp");
         rd.forward(request, response);
 

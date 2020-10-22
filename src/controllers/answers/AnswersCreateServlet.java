@@ -36,16 +36,16 @@ public class AnswersCreateServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String _token = (String)request.getParameter("_token");
+
         if(_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
-
+            Question q = em.find(Question.class, Integer.parseInt(request.getParameter("id")));
             Answer a = new Answer();
             a.setUser((User)request.getSession().getAttribute("login_user"));
-            a.setQuestion((Question)request.getSession().getAttribute("now_question"));
+            a.setQuestion(q);
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
             a.setCreated_at(currentTime);
             a.setUpdated_at(currentTime);
-
             a.setAnswer_content(request.getParameter("answer_content"));
 
             List<String> errors = AnswerValidator.validate(a);
@@ -62,9 +62,9 @@ public class AnswersCreateServlet extends HttpServlet {
                 em.persist(a);
                 em.getTransaction().commit();
                 em.close();
-                request.getSession().removeAttribute("now_question");
-
-                response.sendRedirect(request.getContextPath() + "/questions/new");
+                request.getSession().setAttribute("flush", "succeed in creating your advice");
+                request.getSession().setAttribute("flush2", "あなたの提案を作成しました");
+                response.sendRedirect(request.getContextPath() + "/questions/show?id=" + q.getId());
             }
 
 

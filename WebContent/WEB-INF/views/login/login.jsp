@@ -1,48 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:import url="/WEB-INF/views/layout/app.jsp" >
+<c:import url="../layout/app.jsp">
     <c:param name="content">
-    <div class="bg-light">
+        <div>
+        <div class="all_content bg-light pb-5">
         <div class="container">
-            <div class="text-center"><br />
-                <h1 class="text-info mb-0 mt-5">Sign in</h1>
-                <span class="text-secondary">まずはログインしよう</span>
-            </div><br />
-            <div class="card text-center">
-                <div class="card-body">
-                    <c:if test="${hasError}">
-                        <p class="mt-5">社員番号かパスワードが間違っています。</p>
-                    </c:if>
-                    <c:if test="${flush !=null}">
-                        <c:out value="${flush}"></c:out>
-                    </c:if>
-                    <form method="POST" action="<c:url value='/login' />">
-                        <div class="form-group"><br />
-                            <label for="name" class="mb-0 h5">user name</label><br />
-                            <label for ="name" class="text-secondary">ユーザー名</label> <br />
-                                <div class="row justify-content-center">
-                                    <div class="col-6">
-                                            <input name="name" type="text" value="${name}" class="form-control" />
-                                    </div>
-                                </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="password" class="mb-0 h5">user password</label><br />
-                            <label for="password" class="text-secondary">パスワード</label> <br />
-                                <div class="row justify-content-center">
-                                    <div class="col-6">
-                                        <input name="password" type="password" class="form-control" /> <br />
-                                    </div>
-                                </div>
-                        </div>
-                        <input type="hidden" name="_token" value="${_token}" />
-                        <button class="btn btn-info btn-lg">sign in</button><br />or<br />
-                        <a href="<c:url value='/users/new' />" class="h5">sign up</a>
-                        <span class="text-secondary">未登録の場合はまずは登録しよう</span><br /><br /><br />
-                    </form>
-                </div>
-            </div>
+        <div class="page_title text-center pb-4">
+        <h1 class="text-info">Sign in</h1>
+        <p class="text-secondary">まずはログインしよう</p>
         </div>
-    </div>
+        <c:if test="${flush != null}">
+        <div class="alert alert-warning text-center p-0">
+        <button class="close" data-dismiss="alert">&times;</button>
+        <p class="font-weight-bold mb-1">${flush}</p>
+        <p class="mb-0">${flush2}</p>
+        </div>
+        </c:if>
+        <form method="POST" action="<c:url value='/login' />">
+        <div class="card">
+        <div class="card-body">
+        <div class="question_form60 text-center">
+        <div class="form-group">
+        <label for="name" class="font-weight-bold mb-0">user name</label><br />
+        <label for="name" class="text-secondary m-0">ユーザー名</label><br />
+        <input name="name" type="text" value="${user.name}" class="form-control" />
+        </div>
+        <div class="form-group">
+        <label for="password" class="font-weight-bold mb-0">user password</label><br />
+        <label for="password" class="text-secondary m-0">パスワード</label><br />
+        <input name="password" type="password" class="form-control" />
+        </div>
+        <div class="content_link2 d-flex justify-content-center">
+        <button class="btn btn-info">sign in</button>
+        <p class="text-secondary separate_key ml-4 mr-3">or</p>
+        <a class="font-weight-bold text-info" href="<c:url value='/users/new' />">
+        sign up
+        <span class="text-secondary font-weight-normal">未登録の場合はまずは登録しよう</span>
+        </a>
+        </div>
+        </div>
+        </div>
+        </div>
+        </form>
+        </div>
+        </div>
+        </div>
     </c:param>
 </c:import>

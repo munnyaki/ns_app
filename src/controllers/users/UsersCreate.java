@@ -74,7 +74,10 @@ public class UsersCreate extends HttpServlet {
                 em.persist(u);
                 em.getTransaction().commit();
                 em.close();
-                response.sendRedirect(request.getContextPath() + "/users/new");
+                request.getSession().setAttribute("flush", "succeed in creating user");
+                request.getSession().setAttribute("flush2", "ユーザーを作成しました");
+                request.getSession().setAttribute("login_user", u);
+                response.sendRedirect(request.getContextPath() + "/questions/index");
 
             }
 
