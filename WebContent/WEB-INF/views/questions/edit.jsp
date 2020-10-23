@@ -18,6 +18,15 @@
                 </a>
                 </div>
         </div>
+        <c:if test="${errors != null}">
+            <div class="alert alert-danger text-center p-0">
+            <button class="close" data-dismiss="alert">&times;</button>
+            <p class="font-weight-bold mb-1">入力内容にエラーがあります</p>
+            <c:forEach var="error" items="${errors}">
+            <p class="mb-0">${error}</p>
+            </c:forEach>
+            </div>
+        </c:if>
         <div class="bg-white clearfix">
         <div class="container main_content">
         <form method="POST" action="<c:url value='/questions/update' />">

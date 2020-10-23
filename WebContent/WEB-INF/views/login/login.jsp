@@ -9,6 +9,13 @@
         <h1 class="text-info">Sign in</h1>
         <p class="text-secondary">まずはログインしよう</p>
         </div>
+        <c:if test="${hasError}">
+            <div class="alert alert-danger text-center p-0">
+                <button class="close" data-dismiss="alert">&times;</button>
+                <p class="font-weight-bold mb-1"> uncorrect user name or password</p>
+                <p class="mb-0">ユーザー名かパスワードが間違えています</p>
+            </div>
+        </c:if>
         <c:if test="${flush != null}">
         <div class="alert alert-warning text-center p-0">
         <button class="close" data-dismiss="alert">&times;</button>
@@ -23,7 +30,7 @@
         <div class="form-group">
         <label for="name" class="font-weight-bold mb-0">user name</label><br />
         <label for="name" class="text-secondary m-0">ユーザー名</label><br />
-        <input name="name" type="text" value="${user.name}" class="form-control" />
+        <input name="name" type="text" value="${name}" class="form-control" />
         </div>
         <div class="form-group">
         <label for="password" class="font-weight-bold mb-0">user password</label><br />

@@ -53,6 +53,7 @@ public class AnswersCreateServlet extends HttpServlet {
                 em.close();
                 request.setAttribute("errors", errors);
                 request.setAttribute("answer", a);
+                request.setAttribute("nowquestion", q);
                 request.setAttribute("_token",request.getSession().getId());
 
                 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/answers/new.jsp");
