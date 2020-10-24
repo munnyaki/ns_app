@@ -82,6 +82,26 @@
             </form>
         </div>
         </div>
+        <p class="font-weight-bold text-info mb-2 mt-2">全 ${answers_count} 件</p>
+        <nav>
+            <ul class="pagination">
+            <c:forEach var="i" begin="1" end="${((answers_count - 1) / 10) + 1}" step="1">
+            <c:choose>
+            <c:when test="${page == i}">
+            <li class="page-item active">
+            <a class="page-link" href="<c:url value='/questions/show?id=${nowquestion.id}&page=${i}' />">${i}</a>
+            </li>
+            </c:when>
+            <c:otherwise>
+            <li class="page-item">
+            <a class="page-link" href="<c:url value='/questions/show?id=${nowquestion.id}&page=${i}' />">${i}</a>
+            </li>
+            </c:otherwise>
+            </c:choose>
+
+            </c:forEach>
+            </ul>
+        </nav>
         </div>
    </c:when>
    <c:otherwise>
