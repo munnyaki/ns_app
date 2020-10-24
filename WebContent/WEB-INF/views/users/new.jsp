@@ -9,6 +9,15 @@
                     <h1 class="text-info">Sign up</h1>
                     <p class="text-secondary">まずは登録しよう</p>
                 </div>
+                <c:if test="${errors != null}">
+                    <div class="alert alert-danger text-center p-0">
+                    <button class="close" data-dismiss="alert">&times;</button>
+                    <p class="font-weight-bold mb-1">入力内容にエラーがあります</p>
+                    <c:forEach var="error" items="${errors}">
+                    <p class="mb-0">${error}</p>
+                    </c:forEach>
+                    </div>
+                </c:if>
                 <form method="POST" action="<c:url value='/users/create' />">
                 <div class="card">
                 <div class="card-body">

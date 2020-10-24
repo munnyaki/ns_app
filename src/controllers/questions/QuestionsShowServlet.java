@@ -47,8 +47,8 @@ public class QuestionsShowServlet extends HttpServlet {
         }
         List<Answer> answers = em.createNamedQuery("getSomeAnswers", Answer.class)
                 .setParameter("question", q)
-                .setFirstResult(5 * (page - 1))
-                .setMaxResults(5)
+                .setFirstResult(10 * (page - 1))
+                .setMaxResults(10)
                 .getResultList();
         long answers_count = (long)em.createNamedQuery("getSomeAnswersCount", Long.class)
                 .setParameter("question", q)

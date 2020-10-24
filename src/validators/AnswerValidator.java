@@ -9,17 +9,19 @@ public class AnswerValidator {
     public static List<String> validate(Answer a) {
         List<String> errors = new ArrayList<String>();
 
-        String answer_content_error = _validateAnswer_content(a.getAnswer_content());
-        if(!answer_content_error.equals("")){
-            errors.add(answer_content_error);
+        List<String> errors_sub = _validateAnswer_content(a.getAnswer_content());
+        if(!errors_sub.equals("")){
+            errors.addAll(errors_sub);
         }
         return errors;
     }
 
-    private static String _validateAnswer_content(String answer_content){
+    private static List<String> _validateAnswer_content(String answer_content){
+        List<String> errors_sub = new ArrayList<String>();
         if(answer_content == null || answer_content.equals("")){
-            return "内容を入力してください";
+            errors_sub.add("enter the advice");
+            errors_sub.add("提案を入力してください");
         }
-        return "";
+        return errors_sub;
     }
 }
