@@ -24,7 +24,14 @@ import javax.persistence.Table;
     @NamedQuery(
             name = "getSomeQuestions",
             query = "SELECT q FROM Question AS q WHERE q.user = :user ORDER BY q.id DESC"
-            )
+            ),
+    @NamedQuery(
+            name = "getSearchedQuestions",
+            query = "SELECT q FROM Question AS q WHERE q.question_title like CONCAT('%',:part_of_title,'%') ORDER BY q.id DESC"
+            ),
+    @NamedQuery(
+            name = "getSearchedQuestionsCount",
+            query = "SELECT COUNT(q) FROM Question AS q WHERE q.question_title like CONCAT('%',:part_of_title,'%')")
 })
 
 @Entity
