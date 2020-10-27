@@ -22,7 +22,7 @@
         <form method="GET" action="<c:url value='/questions/searched_index' />">
         <div class="input-group justify-content-center">
             <div class="col-6">
-            <input name="title" type="search" class="form-control" placeholder="ヒットしそうな文字を入れよう">
+            <input name="part_of_title" type="text" class="form-control" placeholder="ヒットしそうな文字を空白なしで入れよう" />
             </div>
             <div>
             <span class="input-group-btn">
@@ -31,8 +31,6 @@
             </div>
         </div>
         </form>
-        <c:choose>
-        <c:when test="${questions != null }">
         <c:forEach var="question" items="${questions}" varStatus="status">
             <div class="one_question">
                 <a class="h4 text-info" href="<c:url value='/users/show?id=${question.user.id}' />">${question.user.name}</a>
@@ -44,18 +42,6 @@
                 </div>
             </div>
         </c:forEach>
-        <a class="font-weight-bold text-info" href="<c:url value='/questions/index' />">一覧へ戻る</a>
-
-         </c:when>
-        <c:otherwise>
-        <div class="page_title text-center">
-            <h1 class="text-secondary">Not found issue</h1>
-            <p class="text-secondary">お探しの課題は見つかりませんでした</p>
-            <a class="font-weight-bold text-info" href="<c:url value='/questions/index' />">一覧へ戻る</a>
-
-        </div>
-        </c:otherwise>
-        </c:choose>
         </div>
         <div class="one_user text-center mt-2">
             <a class="h4 text-info" href="<c:url value='/users/show?id=${login_user.id}' />">${login_user.name}</a>
@@ -67,6 +53,25 @@
         </div>
         </div>
         <p class="font-weight-bold text-info mb-2 mt-2">全 ${questions_count} 件</p>
+        <nav>
+            <ul class="pagination">
+            <c:forEach var="i" begin="1" end="${((questions_count - 1) / 10) + 1}" step="1">
+            <c:choose>
+            <c:when test="${page == i}">
+            <li class="page-item active">
+            <a class="page-link" href="<c:url value='/questions/index?page=${i}' />">${i}</a>
+            </li>
+            </c:when>
+            <c:otherwise>
+            <li class="page-item">
+            <a class="page-link" href="<c:url value='/questions/index?page=${i}' />">${i}</a>
+            </li>
+            </c:otherwise>
+            </c:choose>
+
+            </c:forEach>
+            </ul>
+        </nav>
         </div>
     </c:param>
 </c:import>
