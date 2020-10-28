@@ -67,6 +67,9 @@
         </div>
         </div>
         <p class="font-weight-bold text-info mb-2 mt-2">全 ${questions_count} 件</p>
+        <c:forEach var="category" items="${categories}" varStatus="status">
+                <a href="<c:url value='/questions/categorized_index?id=${category.id}' />">${category.type}</a>
+            </c:forEach>
         </div>
     </c:param>
 </c:import>

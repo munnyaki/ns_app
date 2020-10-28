@@ -47,7 +47,7 @@
                         <option value="${category.id}">${category.type}</option>
                         </c:forEach>
                     </select><br />
-                    </div>
+                </div>
 
                 </div>
                 <div class="form-group mb-0">

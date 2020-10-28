@@ -42,9 +42,6 @@
                 </div>
             </div>
         </c:forEach>
-        <c:forEach var="category" items="${categories}" varStatus="status">
-            <a href="#">${category.type}</a>
-        </c:forEach>
         </div>
         <div class="one_user text-center mt-2">
             <a class="h4 text-info" href="<c:url value='/users/show?id=${login_user.id}' />">${login_user.name}</a>
@@ -75,6 +72,9 @@
             </c:forEach>
             </ul>
         </nav>
+         <c:forEach var="category" items="${categories}" varStatus="status">
+                <a href="<c:url value='/questions/categorized_index?id=${category.id}' />">${category.type}</a>
+            </c:forEach>
         </div>
     </c:param>
 </c:import>

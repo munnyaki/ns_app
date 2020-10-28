@@ -36,20 +36,27 @@ public class QuestionsCategorized_Index extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
+        Category c = em.find(Category.class, Integer.parseInt(request.getParameter("id")));
+
         List<Category> categories = em.createNamedQuery("getAllCategories", Category.class)
                 .getResultList();
+
         int page;
         try{
             page = Integer.parseInt(request.getParameter("page"));
         } catch(Exception e) {
             page = 1;
         }
-        List<Question> questions = em.createNamedQuery("getAllQuestions", Question.class)
+
+        List<Question> questions = em.createNamedQuery("getCategorizedQuestions", Question.class)
+                .setParameter("category", c)
+
                 .setFirstResult(10 * (page - 1))
                 .setMaxResults(10)
                 .getResultList();
 
-        long questions_count = (long)em.createNamedQuery("getQuestionsCount", Long.class)
+        long questions_count = (long)em.createNamedQuery("getCategorizedQuestionsCount", Long.class)
+                .setParameter("category", c)
                 .getSingleResult();
 
          em.close();

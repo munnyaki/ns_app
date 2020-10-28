@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Category;
 import models.Question;
 import utils.DBUtil;
 
@@ -35,6 +36,9 @@ public class QuestionsIndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
+        List<Category> categories = em.createNamedQuery("getAllCategories", Category.class)
+                .getResultList();
+
         int page;
         try{
             page = Integer.parseInt(request.getParameter("page"));
@@ -54,6 +58,7 @@ public class QuestionsIndexServlet extends HttpServlet {
         request.setAttribute("questions", questions);
         request.setAttribute("questions_count", questions_count);
         request.setAttribute("page", page);
+        request.setAttribute("categories", categories);
         if(request.getSession().getAttribute("flush") != null){
             request.setAttribute("flush", request.getSession().getAttribute("flush"));
             request.getSession().removeAttribute("flush");

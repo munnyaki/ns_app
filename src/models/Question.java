@@ -31,7 +31,16 @@ import javax.persistence.Table;
             ),
     @NamedQuery(
             name = "getSearchedQuestionsCount",
-            query = "SELECT COUNT(q) FROM Question AS q WHERE q.question_title like CONCAT('%',:part_of_title,'%')")
+            query = "SELECT COUNT(q) FROM Question AS q WHERE q.question_title like CONCAT('%',:part_of_title,'%')"
+            ),
+    @NamedQuery(
+            name = "getCategorizedQuestions",
+            query = "SELECT q FROM Question AS q WHERE q.category = :category ORDER BY q.id DESC"
+                    ),
+    @NamedQuery(
+            name = "getCategorizedQuestionsCount",
+            query = "SELECT COUNT(q) FROM Question AS q WHERE q.category = :category")
+
 })
 
 @Entity
