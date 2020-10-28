@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Category;
 import models.Question;
 import models.User;
 import utils.DBUtil;
@@ -40,7 +41,9 @@ public class QuestionsCreateServlet extends HttpServlet {
             if(_token != null && _token.equals(request.getSession().getId())){
                 EntityManager em = DBUtil.createEntityManager();
 
+                Category c = em.find(Category.class , 11);
                 Question q = new Question();
+                q.setCategory((Category)c);
                 q.setQuestion_title(request.getParameter("question_title"));
                 q.setQuestion_content(request.getParameter("question_content"));
 
