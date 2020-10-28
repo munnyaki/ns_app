@@ -36,7 +36,20 @@
                 <p class="font-weight-bold mb-0">issue</p>
                 <p class="m-0">どんな場面でのことなのかを詳細に書き出してみよう</p>
             </div>
-            <div class="question_form10 text-center">
+            <div class="question_form10 text-center justify-content-center">
+                <div class="form-group mb-0">
+                    <label for="category" class="font-weight-bold mb-0">category</label><br />
+                    <label for="category" class="text-secondary m-0">カテゴリー</label><br />
+                <div class="row justify-content-center">
+                    <select name="category" class="form-control col-3 font-weight-bold text-info">
+                        <option>Issue on (必須)</option>
+                        <c:forEach var="category" items="${categories}" varStatus="status">
+                        <option value="${category.id}">${category.type}</option>
+                        </c:forEach>
+                    </select><br />
+                    </div>
+
+                </div>
                 <div class="form-group mb-0">
                 <label for="question_title" class="font-weight-bold mb-0">summary of a issue</label><br />
                 <label for="question_title" class="text-secondary m-0">課題の要約</label><br />

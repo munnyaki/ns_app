@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @NamedQueries({
         @NamedQuery(
                 name = "getAllCategories",
-                query = "SELECT c FROM Category AS c ORDER BY c.id DESC")
+                query = "SELECT c FROM Category AS c ORDER BY c.id ASC")
 })
 @Entity
 public class Category {

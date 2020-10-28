@@ -41,7 +41,7 @@ public class QuestionsCreateServlet extends HttpServlet {
             if(_token != null && _token.equals(request.getSession().getId())){
                 EntityManager em = DBUtil.createEntityManager();
 
-                Category c = em.find(Category.class , 11);
+                Category c = em.find(Category.class , Integer.parseInt(request.getParameter("category")));
                 Question q = new Question();
                 q.setCategory((Category)c);
                 q.setQuestion_title(request.getParameter("question_title"));
