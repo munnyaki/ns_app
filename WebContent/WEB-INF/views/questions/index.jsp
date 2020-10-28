@@ -75,10 +75,12 @@
             </li>
             </c:otherwise>
             </c:choose>
-
             </c:forEach>
             </ul>
         </nav>
+        <c:forEach var="category" items="${categories}" varStatus="status">
+                <a href="<c:url value='/questions/categorized_index?id=${category.id}' />">${category.type}</a>
+            </c:forEach>
         </div>
     </c:param>
 </c:import>
