@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Category;
 import models.Question;
 import utils.DBUtil;
 
@@ -34,7 +35,8 @@ public class QuestionsSearched_IndexServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
-
+        List<Category> categories = em.createNamedQuery("getAllCategories", Category.class)
+                .getResultList();
         String part_of_title = request.getParameter("part_of_title");
         List<Question> questions = em.createNamedQuery("getSearchedQuestions", Question.class)
                 .setParameter("part_of_title", part_of_title)
@@ -43,7 +45,7 @@ public class QuestionsSearched_IndexServlet extends HttpServlet {
                 .setParameter("part_of_title", part_of_title)
                 .getSingleResult();
          em.close();
-
+        request.setAttribute("categories", categories);
         request.setAttribute("questions", questions);
         request.setAttribute("questions_count", questions_count);
 

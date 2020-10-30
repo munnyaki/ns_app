@@ -6,11 +6,11 @@
     <c:param name="content">
         <c:choose>
         <c:when test="${answer != null}">
-        <div class="all_content bg-light pb-5">
+        <div class="container bg-light pb-5">
             <div class="page_title text-center pb-4">
                 <h1 class="text-info">Edit your advice</h1>
                 <p class="text-secondary">自身の提案を編集しよう</p>
-                <div class="page_title2 d-flex m-auto">
+                <div class="page_title2">
                     <a class="text-info" href="<c:url value='/questions/new' />">
                         Ask advice to solve your issue
                         <span class="text-secondary">自身が持つ課題に対する解決策を尋ねてみよう</span>
@@ -32,7 +32,8 @@
             </div>
         </c:if>
             <div class="bg-white clearfix">
-            <div class="container main_content">
+            <div class="nav_category"><p></p></div>
+            <div class="main_content">
                 <form method="POST" action="<c:url value='/answers/update?id=${answer.question.id}' />">
                 <div class="main_content_title text-center mt-2">
                     <h4 class="m-0">Issue</h4>

@@ -13,18 +13,11 @@
         <span class="text-secondary">自身が持つ課題に対する解決策を尋ねてみよう</span>
         </a>
     </div>
-    <c:if test="${flush != null}">
-        <div class="alert alert-warning text-center p-0">
-        <button class="close" data-dismiss="alert">&times;</button>
-        <p class="font-weight-bold mb-1">${flush}</p>
-        <p class="mb-0">${flush2}</p>
-        </div>
-        </c:if>
     <div class="bg-white clearfix">
     <div class="nav_category text-center">
         <h4 class="m-0 pt-2">category</h4>
         <p class="text-secondary pb-1">課題分類</p>
-        <div class="nav_category_item">
+    <div class="nav_category_item">
         <ul class="nav flex-column">
             <li class="nav-item">
                 <c:forEach var="category" items="${categories}" varStatus="status">
@@ -98,6 +91,7 @@
             </li>
             </c:otherwise>
             </c:choose>
+
             </c:forEach>
             </ul>
         </nav>
@@ -111,7 +105,6 @@
             </form>
         </div>
         </div>
-
         </div>
     </c:param>
 </c:import>

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Category;
 import models.Question;
 import utils.DBUtil;
 import validators.QuestionValidator;
@@ -40,10 +41,12 @@ public class QuestionsUpdateServlet extends HttpServlet {
             EntityManager em = DBUtil.createEntityManager();
 
             Question q = em.find(Question.class, (Integer)(request.getSession().getAttribute("question_id")));
+            Category c = em.find(Category.class , Integer.parseInt(request.getParameter("category")));
 
             q.setQuestion_title(request.getParameter("question_title"));
             q.setQuestion_content(request.getParameter("question_content"));
             q.setUpdated_at(new Timestamp(System.currentTimeMillis()));
+            q.setCategory((Category)c);
 
         List<String> errors = QuestionValidator.validate(q);
         if(errors.size() > 0) {

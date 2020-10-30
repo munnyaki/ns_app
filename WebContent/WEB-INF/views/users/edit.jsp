@@ -10,7 +10,7 @@
                 <div class="page_title text-center pb-4">
                     <h1 class="text-info">Edit your details</h1>
                     <p class="text-secondary">自身のユーザー情報を編集しよう</p>
-                    <div class="page_title2 d-flex m-auto">
+                    <div class="page_title2">
                         <a class="text-info" href="<c:url value='/questions/new' />">
                             Ask advice to solve your issue
                             <span class="text-secondary">自信が持つ課題に対する解決策を尋ねてみよう</span>

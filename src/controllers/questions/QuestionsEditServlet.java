@@ -1,6 +1,7 @@
 package controllers.questions;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Category;
 import models.Question;
 import utils.DBUtil;
 
@@ -35,11 +37,13 @@ public class QuestionsEditServlet extends HttpServlet {
         EntityManager em = DBUtil.createEntityManager();
 
         Question q = em.find(Question.class, Integer.parseInt(request.getParameter("id")));
-
+        List<Category> categories = em.createNamedQuery("getAllCategories", Category.class)
+                .getResultList();
 
         em.close();
 
         request.setAttribute("question", q);
+        request.setAttribute("categories", categories);
         request.setAttribute("_token",request.getSession().getId());
         if(q != null){
         request.getSession().setAttribute("question_id", q.getId());

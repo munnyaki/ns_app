@@ -5,6 +5,7 @@
         <class>models.User</class>
         <class>models.Question</class>
         <class>models.Answer</class>
+        <class>models.Category</class>
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="none"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>

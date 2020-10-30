@@ -16,16 +16,16 @@ import models.Question;
 import utils.DBUtil;
 
 /**
- * Servlet implementation class QuestionIndexServlet
+ * Servlet implementation class QuestionsCategorized_Index
  */
-@WebServlet("/questions/index")
-public class QuestionsIndexServlet extends HttpServlet {
+@WebServlet("/questions/categorized_index")
+public class QuestionsCategorized_Index extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QuestionsIndexServlet() {
+    public QuestionsCategorized_Index() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,6 +36,8 @@ public class QuestionsIndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
+        Category c = em.find(Category.class, Integer.parseInt(request.getParameter("id")));
+
         List<Category> categories = em.createNamedQuery("getAllCategories", Category.class)
                 .getResultList();
 
@@ -45,28 +47,26 @@ public class QuestionsIndexServlet extends HttpServlet {
         } catch(Exception e) {
             page = 1;
         }
-        List<Question> questions = em.createNamedQuery("getAllQuestions", Question.class)
+
+        List<Question> questions = em.createNamedQuery("getCategorizedQuestions", Question.class)
+                .setParameter("category", c)
+
                 .setFirstResult(10 * (page - 1))
                 .setMaxResults(10)
                 .getResultList();
 
-        long questions_count = (long)em.createNamedQuery("getQuestionsCount", Long.class)
+        long questions_count = (long)em.createNamedQuery("getCategorizedQuestionsCount", Long.class)
+                .setParameter("category", c)
                 .getSingleResult();
 
-        em.close();
-
+         em.close();
+         request.setAttribute("categories", categories);
         request.setAttribute("questions", questions);
         request.setAttribute("questions_count", questions_count);
         request.setAttribute("page", page);
-        request.setAttribute("categories", categories);
-        if(request.getSession().getAttribute("flush") != null){
-            request.setAttribute("flush", request.getSession().getAttribute("flush"));
-            request.getSession().removeAttribute("flush");
-            request.setAttribute("flush2", request.getSession().getAttribute("flush2"));
-            request.getSession().removeAttribute("flush2");
-        }
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/questions/index.jsp");
-        rd.forward(request, response);
 
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/questions/categorized_index.jsp");
+        rd.forward(request, response);
     }
+
 }

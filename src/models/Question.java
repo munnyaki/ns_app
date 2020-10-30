@@ -31,7 +31,16 @@ import javax.persistence.Table;
             ),
     @NamedQuery(
             name = "getSearchedQuestionsCount",
-            query = "SELECT COUNT(q) FROM Question AS q WHERE q.question_title like CONCAT('%',:part_of_title,'%')")
+            query = "SELECT COUNT(q) FROM Question AS q WHERE q.question_title like CONCAT('%',:part_of_title,'%')"
+            ),
+    @NamedQuery(
+            name = "getCategorizedQuestions",
+            query = "SELECT q FROM Question AS q WHERE q.category = :category ORDER BY q.id DESC"
+                    ),
+    @NamedQuery(
+            name = "getCategorizedQuestionsCount",
+            query = "SELECT COUNT(q) FROM Question AS q WHERE q.category = :category")
+
 })
 
 @Entity
@@ -40,6 +49,10 @@ public class Question {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -63,6 +76,16 @@ public class Question {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public User getUser() {
