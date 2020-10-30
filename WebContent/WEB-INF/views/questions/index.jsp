@@ -21,7 +21,40 @@
         </div>
         </c:if>
     <div class="bg-white clearfix">
-    <div class="container main_content">
+    <div class="nav_category text-center">
+        <h4 class="m-0 pt-2">category</h4>
+        <p class="text-secondary pb-1">課題分類</p>
+        <div class="nav_category_item">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <c:forEach var="category" items="${categories}" varStatus="status">
+                <c:if test="${category.id == 1}">
+                <a class="nav-link btn-outline-info font-weight-bold" href="<c:url value='/questions/categorized_index?id=${category.id}' />"><i class="fas fa-briefcase"></i> ${category.type}</a>
+                </c:if>
+                <c:if test="${category.id == 11}">
+                <a class="nav-link btn-outline-info font-weight-bold" href="<c:url value='/questions/categorized_index?id=${category.id}' />"><i class="fas fa-school"></i> ${category.type}</a>
+                </c:if>
+                <c:if test="${category.id == 21}">
+                <a class="nav-link btn-outline-info font-weight-bold" href="<c:url value='/questions/categorized_index?id=${category.id}' />"><i class="fas fa-home"></i> ${category.type}</a>
+                </c:if>
+                <c:if test="${category.id == 31}">
+                <a class="nav-link btn-outline-info font-weight-bold" href="<c:url value='/questions/categorized_index?id=${category.id}' />"><i class="fas fa-users"></i> ${category.type}</a>
+                </c:if>
+                <c:if test="${category.id == 41}">
+                <a class="nav-link btn-outline-info font-weight-bold" href="<c:url value='/questions/categorized_index?id=${category.id}' />"><i class="fas fa-user-shield"></i> ${category.type}</a>
+                </c:if>
+                <c:if test="${category.id == 51}">
+                <a class="nav-link btn-outline-info font-weight-bold" href="<c:url value='/questions/categorized_index?id=${category.id}' />"><i class="fas fa-globe-americas"></i> ${category.type}</a>
+                </c:if>
+                <c:if test="${category.id == 61}">
+                <a class="nav-link btn-outline-info font-weight-bold" href="<c:url value='/questions/categorized_index?id=${category.id}' />">${category.type}</a>
+                </c:if>
+                </c:forEach>
+            </li>
+        </ul>
+        </div>
+        </div>
+    <div class="main_content">
         <div class="main_content_title text-center mt-2 mb-2">
         <h4 class="m-0">Issues</h4>
         <p class="text-secondary mt-0">課題一覧</p>
@@ -49,16 +82,6 @@
                 </div>
             </div>
         </c:forEach>
-        </div>
-        <div class="one_user text-center mt-2">
-            <a class="h4 text-info" href="<c:url value='/users/show?id=${login_user.id}' />">${login_user.name}</a>
-            <span class="text-secondary">${login_user.age}</span>
-            <p>${login_user.introduction}</p>
-            <form method="GET" action="<c:url value='/logout' />">
-            <button class="btn btn-info">sign out</button>
-            </form>
-        </div>
-        </div>
         <p class="font-weight-bold text-info mb-2 mt-2">全 ${questions_count} 件</p>
         <nav>
             <ul class="pagination">
@@ -78,9 +101,17 @@
             </c:forEach>
             </ul>
         </nav>
-        <c:forEach var="category" items="${categories}" varStatus="status">
-                <a href="<c:url value='/questions/categorized_index?id=${category.id}' />">${category.type}</a>
-            </c:forEach>
+        </div>
+        <div class="one_user text-center mt-2">
+            <a class="h4 text-info" href="<c:url value='/users/show?id=${login_user.id}' />">${login_user.name}</a>
+            <span class="text-secondary">${login_user.age}</span>
+            <p>${login_user.introduction}</p>
+            <form method="GET" action="<c:url value='/logout' />">
+            <button class="btn btn-info">sign out</button>
+            </form>
+        </div>
+        </div>
+
         </div>
     </c:param>
 </c:import>
