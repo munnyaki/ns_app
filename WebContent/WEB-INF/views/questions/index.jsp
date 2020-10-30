@@ -4,7 +4,7 @@
 
 <c:import url="/WEB-INF/views/layout/app.jsp" >
     <c:param name="content">
-    <div class="all_content bg-light pb-5">
+    <div class="container bg-light pb-5">
     <div class="page_title text-center pb-4">
         <h1 class="text-info">Find the same as your issue</h1>
         <p class="text-secondary">自身が持つ課題と似たものを見つけよう</p>

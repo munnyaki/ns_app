@@ -5,11 +5,11 @@
     <c:param name="content">
     <c:choose>
     <c:when test="${nowquestion != null}">
-        <div class="all_content bg-light pb-5">
+        <div class="container bg-light pb-5">
             <div class="page_title text-center pb-4">
                 <h1 class="text-info">Find advice to solve your issue</h1>
                 <p class="text-secondary">自身が持つ課題に対する解決策を見つけよう</p>
-                <div class="page_title2 d-flex m-auto">
+                <div class="page_title2">
                     <a class="text-info" href="<c:url value='/questions/new' />">
                         Ask advice to solve your issue
                         <span class="text-secondary">自身が持つ課題に対する解決策を尋ねてみよう</span>
@@ -29,7 +29,8 @@
         </div>
         </c:if>
             <div class="bg-white clearfix">
-            <div class="container main_content">
+            <div class="nav_category"><p></p></div>
+            <div class="main_content">
                 <div class="main_content_title text-center mt-2">
                     <h4 class="m-0">Issue</h4>
                     <p class="text-secondary mt-0">課題</p>
@@ -72,17 +73,7 @@
                         </c:if>
                     </div>
                 </c:forEach>
-            </div>
-            <div class="one_user text-center mt-2">
-            <a class="h4 text-info" href="<c:url value='/users/show?id=${login_user.id}' />">${login_user.name}</a>
-            <span class="text-secondary">${login_user.age}</span>
-            <p>${login_user.introduction}</p>
-            <form method="GET" action="<c:url value='/logout' />">
-            <button class="btn btn-info">sign out</button>
-            </form>
-        </div>
-        </div>
-        <p class="font-weight-bold text-info mb-2 mt-2">全 ${answers_count} 件</p>
+                <p class="font-weight-bold text-info mb-2 mt-2">全 ${answers_count} 件</p>
         <nav>
             <ul class="pagination">
             <c:forEach var="i" begin="1" end="${((answers_count - 1) / 10) + 1}" step="1">
@@ -102,6 +93,16 @@
             </c:forEach>
             </ul>
         </nav>
+            </div>
+            <div class="one_user text-center mt-2">
+            <a class="h4 text-info" href="<c:url value='/users/show?id=${login_user.id}' />">${login_user.name}</a>
+            <span class="text-secondary">${login_user.age}</span>
+            <p>${login_user.introduction}</p>
+            <form method="GET" action="<c:url value='/logout' />">
+            <button class="btn btn-info">sign out</button>
+            </form>
+        </div>
+        </div>
         </div>
    </c:when>
    <c:otherwise>

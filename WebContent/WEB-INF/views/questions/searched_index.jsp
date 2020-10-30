@@ -4,7 +4,7 @@
 
 <c:import url="/WEB-INF/views/layout/app.jsp" >
     <c:param name="content">
-    <div class="all_content bg-light pb-5">
+    <div class="container bg-light pb-5">
     <div class="page_title text-center pb-4">
         <h1 class="text-info">Find the same as your issue</h1>
         <p class="text-secondary">自身が持つ課題と似たものを見つけよう</p>
@@ -14,7 +14,40 @@
         </a>
     </div>
     <div class="bg-white clearfix">
-    <div class="container main_content">
+    <div class="nav_category text-center">
+        <h4 class="m-0 pt-2">category</h4>
+        <p class="text-secondary pb-1">課題分類</p>
+        <div class="nav_category_item">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <c:forEach var="category" items="${categories}" varStatus="status">
+                <c:if test="${category.id == 1}">
+                <a class="nav-link btn-outline-info font-weight-bold" href="<c:url value='/questions/categorized_index?id=${category.id}' />"><i class="fas fa-briefcase"></i> ${category.type}</a>
+                </c:if>
+                <c:if test="${category.id == 11}">
+                <a class="nav-link btn-outline-info font-weight-bold" href="<c:url value='/questions/categorized_index?id=${category.id}' />"><i class="fas fa-school"></i> ${category.type}</a>
+                </c:if>
+                <c:if test="${category.id == 21}">
+                <a class="nav-link btn-outline-info font-weight-bold" href="<c:url value='/questions/categorized_index?id=${category.id}' />"><i class="fas fa-home"></i> ${category.type}</a>
+                </c:if>
+                <c:if test="${category.id == 31}">
+                <a class="nav-link btn-outline-info font-weight-bold" href="<c:url value='/questions/categorized_index?id=${category.id}' />"><i class="fas fa-users"></i> ${category.type}</a>
+                </c:if>
+                <c:if test="${category.id == 41}">
+                <a class="nav-link btn-outline-info font-weight-bold" href="<c:url value='/questions/categorized_index?id=${category.id}' />"><i class="fas fa-user-shield"></i> ${category.type}</a>
+                </c:if>
+                <c:if test="${category.id == 51}">
+                <a class="nav-link btn-outline-info font-weight-bold" href="<c:url value='/questions/categorized_index?id=${category.id}' />"><i class="fas fa-globe-americas"></i> ${category.type}</a>
+                </c:if>
+                <c:if test="${category.id == 61}">
+                <a class="nav-link btn-outline-info font-weight-bold" href="<c:url value='/questions/categorized_index?id=${category.id}' />">${category.type}</a>
+                </c:if>
+                </c:forEach>
+            </li>
+        </ul>
+        </div>
+        </div>
+    <div class="main_content">
         <div class="main_content_title text-center mt-2 mb-2">
         <h4 class="m-0">Issues</h4>
         <p class="text-secondary mt-0">課題一覧</p>
@@ -44,8 +77,8 @@
                 </div>
             </div>
         </c:forEach>
+        <p class="font-weight-bold text-info mb-2 mt-2">全 ${questions_count} 件</p>
         <a class="font-weight-bold text-info" href="<c:url value='/questions/index' />">一覧へ戻る</a>
-
          </c:when>
         <c:otherwise>
         <div class="page_title text-center">
@@ -66,10 +99,6 @@
             </form>
         </div>
         </div>
-        <p class="font-weight-bold text-info mb-2 mt-2">全 ${questions_count} 件</p>
-        <c:forEach var="category" items="${categories}" varStatus="status">
-                <a href="<c:url value='/questions/categorized_index?id=${category.id}' />">${category.type}</a>
-            </c:forEach>
         </div>
     </c:param>
 </c:import>

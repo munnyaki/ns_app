@@ -14,7 +14,7 @@
     font-size: 16px;
 }
 .page_title2 {
-    width: 700px;
+    width: 80%;
     margin: auto;
     padding-top: 10px;
 }
@@ -64,7 +64,7 @@
 }
 .summary {
     background-color: #DDFFFF;
-    width: 500px;
+    width: 80%;
     margin: auto;
 }
 .one_answer {
@@ -101,5 +101,4 @@
     width: 60%;
     margin: auto;
 }
-.
 

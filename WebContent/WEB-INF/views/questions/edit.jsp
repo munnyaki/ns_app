@@ -4,11 +4,11 @@
     <c:param name="content">
         <c:choose>
             <c:when test="${question != null}" >
-                <div class="all_content bg-light pb-5">
+                <div class="container bg-light pb-5">
         <div class="page_title text-center pb-4">
             <h1 class="text-info">Edit your issue</h1>
             <p class="text-secondary">自身の課題を編集しよう</p>
-                <div class="page_title2 d-flex m-auto ">
+                <div class="page_title2">
                 <a class="text-info" href="<c:url value='/questions/new' />">Ask advice to solve your issue
                     <span class="text-secondary">自身が持つ課題に対する解決策を尋ねてみよう</span>
                 </a>
@@ -28,7 +28,8 @@
             </div>
         </c:if>
         <div class="bg-white clearfix">
-        <div class="container main_content">
+        <div class="nav_category"><p></p></div>
+        <div class="main_content">
         <form method="POST" action="<c:url value='/questions/update' />">
             <div class="text-center mt-2">
                 <h4 class="m-0">Issue</h4>
@@ -42,6 +43,19 @@
                 <p class="m-0">どんな場面でのことなのかを詳細に書き出してみよう</p>
             </div>
             <div class="question_form10 text-center">
+                <div class="form-group mb-0">
+                    <label for="category" class="font-weight-bold mb-0">category</label><br />
+                    <label for="category" class="text-secondary m-0">カテゴリー</label><br />
+                <div class="row justify-content-center">
+                    <select name="category" class="form-control col-3 font-weight-bold text-info">
+                        <option>Issue on (必須)</option>
+                        <c:forEach var="category" items="${categories}" varStatus="status">
+                        <option value="${category.id}">${category.type}</option>
+                        </c:forEach>
+                    </select><br />
+                </div>
+
+                </div>
                 <div class="form-group mb-0">
                 <label for="question_title" class="font-weight-bold mb-0">summary of a issue</label><br />
                 <label for="question_title" class="text-secondary m-0">課題の要約</label><br />
