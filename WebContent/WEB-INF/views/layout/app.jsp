@@ -13,30 +13,32 @@
         <title>Neighbor Support App</title>
     </head>
     <body>
-        <div id="wrapper">
 
+        <div id="wrapper">
             <div id="header">
                 <nav class="navbar bg-info navbar-dark navbar-expand-xl fixed-top">
                     <a class="navbar-brand" href="#">Life question</a>
                     <button class=" btn btn-info navbar-toggler" data-toggle="collapse" data-target="#navbarExample">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+                    <c:if test="${login_user != null}">
                     <div id="navbarExample" class="collapse navbar-collapse">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">user</a>
+                                <a class="nav-link" href="<c:url value='/questions/index' />">Find the same as your issue</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">sign in</a>
+                                <a class="nav-link" href="<c:url value='/questions/new' />">Ask advice to solve your issue</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">sign out</a>
+                                <a class="nav-link" href="<c:url value='/users/show?id=${login_user.id}' />">Confirm your details</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">sign up</a>
+                                <a class="nav-link" href="<c:url value='/logout' />">sign out</a>
                             </li>
                         </ul>
                     </div>
+                    </c:if>
                 </nav>
 
 
