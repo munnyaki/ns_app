@@ -35,7 +35,9 @@
                     <h4 class="m-0">Issue</h4>
                     <p class="text-secondary mt-0">課題</p>
                 </div>
-                <div class="one_question">
+                <div class="row">
+                <div class="col-12 one_question_flame">
+                <div class="one_question justify-cotnent-center text-center">
                     <a class="h4 text-info" href="<c:url value='/users/show?id=${nowquestion.user.id}' />">${nowquestion.user.name}</a>
                     <p class="text-secondary">最終${nowquestion.updated_at}</p>
                     <p class="font-weight-bold">${nowquestion.question_title}</p>
@@ -43,12 +45,13 @@
                     <c:if test="${login_user.id == nowquestion.user.id}">
                     <div class="content_link">
                     <a class="text-info" href="<c:url value='/questions/edit?id=${nowquestion.id}' />">
-                        edit your issue
-                        <span class="text-secondary">自身の課題を編集する</span>
+                    <i class="fas fa-edit fa-2x"></i>
                     </a>
                     </div>
                     </c:if>
                 </div>
+               </div>
+               </div>
                 <div class="main_content_title text-center mt-2">
                     <h4 class="m-0">advice</h4>
                     <p class="text-secondary mt-0">提案</p>
@@ -59,22 +62,25 @@
                         <span class="text-secondary">課題に対する解決策を提案する</span>
                     </a>
                 </div>
+                <div class="row">
                 <c:forEach var="answer" items="${answers}" varStatus="status">
-                    <div class="one_answer">
+                <div class="col-12">
+                    <div class="one_answer justify-content-center text-center">
                         <a class="text-info h4" href="<c:url value='/users/show?id=${answer.user.id}' />">${answer.user.name}</a>
                         <p>${answer.answer_content}</p>
                         <c:if test="${login_user.id == answer.user.id}">
                             <div class="content_link">
                                 <a class="text-info" href="<c:url value='/answers/edit?id=${answer.id}' />">
-                                    edit your advice
-                                    <span class="text-secondary">自身の提案を編集する</span>
+                                <i class="fas fa-edit fa-2x"></i>
                                 </a>
                             </div>
                         </c:if>
                     </div>
+                    </div>
                 </c:forEach>
+                </div>
                 <p class="font-weight-bold text-info mb-2 mt-2">全 ${answers_count} 件</p>
-        <nav>
+        <nav class="pagination_flame">
             <ul class="pagination">
             <c:forEach var="i" begin="1" end="${((answers_count - 1) / 10) + 1}" step="1">
             <c:choose>
@@ -94,13 +100,17 @@
             </ul>
         </nav>
             </div>
-            <div class="one_user text-center mt-2">
+            <div class="one_user text-center">
+            <h4 class="m-0 pt-2">user</h4>
+            <p class="text-secondary pb-1">ユーザー</p>
+            <div class="one_user_item py-2">
             <a class="h4 text-info" href="<c:url value='/users/show?id=${login_user.id}' />">${login_user.name}</a>
             <span class="text-secondary">${login_user.age}</span>
             <p>${login_user.introduction}</p>
             <form method="GET" action="<c:url value='/logout' />">
             <button class="btn btn-info">sign out</button>
             </form>
+            </div>
         </div>
         </div>
         </div>

@@ -39,11 +39,15 @@
                     <h4 class="m-0">Issue</h4>
                     <p class="text-secondary mt-0">課題</p>
                 </div>
-                <div class="one_question">
+                <div class="row">
+                <div class="col-12">
+                <div class="one_question justify-content-center text-center">
                     <a href="<c:url value='/users/show?id=${nowquestion.user.id}' />" class="h4 text-info">${nowquestion.user.name}</a>
                     <p class="text-secondary">最終${nowquestion.updated_at}</p>
                     <p class="font-weight-bold">${nowquestion.question_title}</p>
                     <p class="">${nowquestion.question_content}</p>
+                </div>
+                </div>
                 </div>
                 <div class="text-center mt-2">
                     <h4 class="m-0">advice</h4>
@@ -78,13 +82,17 @@
                 </div>
                 </form>
             </div>
-            <div class="one_user text-center mt-2">
+            <div class="one_user text-center">
+            <h4 class="m-0 pt-2">user</h4>
+        <p class="text-secondary pb-1">ユーザー</p>
+        <div class="one_user_item py-2">
                 <a class="h4 text-info" href="<c:url value='/users/show?id=${login_user.id}' />">${login_user.name}</a>
                 <span class="text-secondary">${login_user.age}</span>
                 <p>${login_user.introduction}</p>
                 <form method="GET" action="<c:url value='/logout' />">
                 <button class="btn btn-info">sign out</button>
                 </form>
+                </div>
             </div>
             </div>
         </div>

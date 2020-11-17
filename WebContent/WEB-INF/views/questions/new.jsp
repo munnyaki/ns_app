@@ -69,13 +69,17 @@
             </div>
         </form>
         </div>
-        <div class="one_user text-center mt-2">
+        <div class="one_user text-center">
+        <h4 class="m-0 pt-2">user</h4>
+            <p class="text-secondary pb-1">ユーザー</p>
+            <div class="one_user_item py-2">
             <a class="h4 text-info" href="<c:url value='/users/show?id=${login_user.id}' />">${login_user.name}</a>
             <span class="text-secondary">${login_user.age}</span>
             <p>${login_user.introduction}</p>
             <form method="GET" action="<c:url value='/logout' />">
             <button class="btn btn-info">sign out</button>
             </form>
+            </div>
         </div>
         </div>
         </div>

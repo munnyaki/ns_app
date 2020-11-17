@@ -64,19 +64,23 @@
             </div>
         </div>
         </form>
+        <div class="row">
         <c:forEach var="question" items="${questions}" varStatus="status">
-            <div class="one_question">
+            <div class="col-md-6">
+            <div class="one_question justify-content-center text-center">
                 <a class="h4 text-info" href="<c:url value='/users/show?id=${question.user.id}' />">${question.user.name}</a>
                 <p class="text-secondary">最終${question.updated_at}</p>
                 <p class="font-weight-bold">${question.question_title}</p>
                 <p class="text-truncate">${question.question_content }</p>
                 <div class="content_link">
-                    <a class="text-info" href="<c:url value='/questions/show?id=${question.id}' />">see details<span class="text-secondary">詳細を見る</span></a>
+                    <a class="text-info" href="<c:url value='/questions/show?id=${question.id}' />"><i class="fas fa-arrow-right fa-2x"></i></a>
                 </div>
             </div>
+            </div>
         </c:forEach>
+        </div>
         <p class="font-weight-bold text-info mb-2 mt-2">全 ${questions_count} 件</p>
-        <nav>
+        <nav class="pagination_flame">
             <ul class="pagination">
             <c:forEach var="i" begin="1" end="${((questions_count - 1) / 10) + 1}" step="1">
             <c:choose>
@@ -96,13 +100,17 @@
             </ul>
         </nav>
         </div>
-        <div class="one_user text-center mt-2">
+        <div class="one_user text-center">
+        <h4 class="m-0 pt-2">user</h4>
+        <p class="text-secondary pb-1">ユーザー</p>
+        <div class="one_user_item py-2">
             <a class="h4 text-info" href="<c:url value='/users/show?id=${login_user.id}' />">${login_user.name}</a>
             <span class="text-secondary">${login_user.age}</span>
             <p>${login_user.introduction}</p>
             <form method="GET" action="<c:url value='/logout' />">
             <button class="btn btn-info">sign out</button>
             </form>
+            </div>
         </div>
         </div>
         </div>
