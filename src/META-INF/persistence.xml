@@ -13,10 +13,9 @@
             <property name="hibernate.format_sql" value="true"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="javax.persistence.schema-generation.scripts.action" value="none"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://us-cdbr-east-02.cleardb.com/heroku_88e497e6a740a66?reconnect=true&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8&amp;characterSetResults=utf8
-"/>
-            <property name="javax.persistence.jdbc.user" value="b1eda5850089ca"/>
-            <property name="javax.persistence.jdbc.password" value="7899e41b"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://neighbor-support-app-db.cmq6hciecfmr.ap-northeast-1.rds.amazonaws.com/heroku_88e497e6a740a66?reconnect=true&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8&amp;characterSetResults=utf8"/>
+            <property name="javax.persistence.jdbc.user" value="root "/>
+            <property name="javax.persistence.jdbc.password" value="muneaki18"/>
         </properties>
     </persistence-unit>
 </persistence>
